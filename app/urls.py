@@ -1,8 +1,10 @@
-from app.views import homeSomthing, aboutSomthing
+from .views import indexView, aboutView,saveDataView
 from django.urls import path
 
 urlpatterns = [
-    path("", homeSomthing, name="home"),
-    path("about/", aboutSomthing, name="about"),
+    path("", indexView, name="index"),
+    path("about/", aboutView, name="about"),
+    path("save-data/", saveDataView, name="save_data"),
+
 ]
 

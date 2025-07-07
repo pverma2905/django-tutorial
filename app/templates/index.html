@@ -1,10 +1,41 @@
-{% extends 'base.html'  %}
+{% extends 'base.html' %}
 
-{%  block title  %}
+{% block title %}
 Home Page
 {% endblock %}
 
 
 {% block content %}
-<h1>Hello Django developer how are you</h1>
-    {% endblock %}
+
+<div class="container py-5">
+    <form action="{% url 'save_data' %}" method="post" class="container mx-auto card p-4 shadow">
+
+        {% for message in messages %}
+        {% if message.tags == 'error' %}
+        <div class="mb-3 alert alert-danger">{{message}}</div>
+        {% else %}
+        <div class="mb-3 alert alert-success">{{message}}</div>
+        {% endif %}
+        {% endfor %}
+
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title">Note Title</label>
+            <input type="text" name="title" id="title" class="form-control" placeholder="Enter note title">
+        </div>
+
+        <div class="mb-3">
+            <label for="title">Note Description</label>
+            <textarea name="description" rows="5" id="desc" class="form-control" placeholder="Enter note description"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <button style="width: 100%;" class="btn btn-primary">Add Note <i
+                    class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+    </form>
+</div>
+
+
+{% endblock %}
